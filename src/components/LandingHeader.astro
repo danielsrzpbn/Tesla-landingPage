@@ -34,44 +34,52 @@ import Logo from "./Logo.astro";
       <li><a href="#">Menú</a></li>
     </ul>
   </nav>
-  <div>
+
+  <div
 	id="menu-backdrop"
-	class={"
+	class={`
 			absolute bg-black/5 backdrop-blur-lg rounded
-			left-[var(--left)] top-[var(--top)]
+			translate-x-[var(--left)] translate-y-[var(--top)]
 			w-[var(--width)] h-[var(--height)]
-			transition-all duration-300
-			ease-in-out hidden opacity-0
-			"}
+			transition-all duration-500
+			ease-in-out opacity-0 -z-10
+			`}
+  >
   </div>
+
 </header>
 
 <script>
 	const listItem = document.querySelectorAll("#landing-header li")
-	const menuBackDrop = document.querySelectorAll("#menu-backdrop") as HTMLElement
+	const menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement
 
 	listItem.forEach((item) => {
-		item.addEventListener("mouseenter", (target) => {
+		item.addEventListener("mouseenter", () => {
 
-			const {left, top, width, height} = target.getBoundingClientRect()
+			const { left, top, width, height } = item.getBoundingClientRect()
+
 			menuBackDrop.style.setProperty("--left", `${left}px`)
 			menuBackDrop.style.setProperty("--top", `${top}px`)
 			menuBackDrop.style.setProperty("--width", `${width}px`)
 			menuBackDrop.style.setProperty("--height", `${height}px`)
+
 			menuBackDrop.style.opacity = "1"
 			menuBackDrop.style.visibility = "visible"
 		})
-	}
-	
-	)
+
+    item.addEventListener("mouseleave", () => {
+      menuBackDrop.style.opacity = "0"
+      menuBackDrop.style.visibility = "hidden"
+    })
+	})
 <script>
-  const headerEl = document.querySelector("#landing-header") as HTMLElement;
+  const headerEl = document.querySelector("#landing-header") as HTMLElement
 
   const observerOptions = {
     root: null,
     rootMargin: "0px", // En cuanto se vea el elemento
     threshold: 0.9, // Porcentaje de visibilidad
-  };
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
