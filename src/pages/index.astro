@@ -1,32 +1,53 @@
 ---
-import ChargeSection from '../components/ChargeSection.astro';
-import HeroSection from '../components/HeroSection.astro';
-import LandingHeader from '../components/LandingHeader.astro';
-import Layout from '../layouts/Layout.astro';
+import ChargeSection from "../components/ChargeSection.astro";
+import HeroSection from "../components/HeroSection.astro";
+import LandingHeader from "../components/LandingHeader.astro";
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
 ---
 
 <Layout title="Proyecto Tesla - Daniel Pabón">
-<LandingHeader /> 
-	
-	<main 
-		class="snap-y snap-mandatory relative w-full h-screen overflow-auto scroll-smooth"
-	>
-		<div class="snap-center">
-			<HeroSection />
-		</div>
-		<div class="snap-center">
-			<ChargeSection />
-		</div>
-		<div class="snap-center">
-			<HeroSection />
-		</div>
-		<div class="snap-center">
-			<ChargeSection />
-		</div>
-		
+  <LandingHeader />
 
-	</main>
+  <main
+    class="snap-y snap-mandatory relative w-full h-screen overflow-auto scroll-smooth"
+  >
+    <div class="snap-center">
+      <Section
+        title="Disfrute de Tesla"
+        subtitle="Programe una prueba de conducción hoy mismo"
+        color="white"
+      >
+        <div slot="footer">
+          <a
+            class={`border-[3px] border-white bg-white/5 backdrop-blur-sm text-sm rounded font-medium ${textColor} px-6 py-2 inline-block hover:bg-white hover:text-black transition-colors`}
+            href="#"
+          >
+            Prueba de conducción
+          </a>
+        </div>
+
+        <video
+          slot="background"
+          class="object-center object-cover h-full w-full"
+          autoplay
+          muted
+          loop
+          src="/video.webm"
+        >
+        </video>
+      </Section>
+    </div>
+    <div class="snap-center">
+      <ChargeSection />
+    </div>
+    <div class="snap-center">
+	<Section>
+
+	</Section>
+    </div>
+    <div class="snap-center">
+      <ChargeSection />
+    </div>
+  </main>
 </Layout>
-
-
- 
